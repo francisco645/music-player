@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  player-musica:
+    container_name: radio-music
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - '8080:80'
