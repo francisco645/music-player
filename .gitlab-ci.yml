@@ -1,23 +1,18 @@
-image: docker:latest
+image: node:latest
 
-# When using dind, it's wise to use the overlayfs driver for
-# improved performance.
-variables:
-  DOCKER_DRIVER: overlay
-
-services:
-  - docker:dind
+before_script:
+    - apt-get update -qy
+    - apt-get install -y node
+    - gem install dpl
 
 stages:
-  - build
-  - deploy
-build:
-  stage: build
-  script:
-    - docker-compose build
+    - production
 
-deploy:
-  stage: deploy
-  script:
-    - docker-compose up -d
-    - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
+production:
+    type: deploy
+    stage: production
+    image: node:lts-alpine
+    script:
+        - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+    only:
+        - main
