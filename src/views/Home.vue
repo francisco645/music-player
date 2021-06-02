@@ -303,9 +303,10 @@
 
 <script>
 import { ref, reactive, computed } from "vue";
-import A1 from "@/music/A1.mp3";
-//import A2 from "@/music/A2.mp3";
-//import A3 from "@/music/A3.mp3";
+import M1 from "@/music/takeOnMe.mp3";
+import M2 from "@/music/fixYou.mp3"
+import M3 from "@/music/theScientist.mp3"
+import m4 from "@/music/somethingJustLikeThis.mp3"
 
 import { Howl, Howler } from "howler";
 
@@ -320,7 +321,10 @@ export default {
 
   setup() {
     const audios = ref([
-      { name: "Take On Me", file: A1, artist: "A-HA", howl: null },
+      { name: "Take On Me", file: M1, artist: "A-HA", howl: null },
+      { name: "Fix you", file: M2, artist: "Coldplay", howl: null },
+      { name: "The Scientist", file: M3, artist: "Coldplay", howl: null },
+      { name: "Something Just Like This", file: m4, artist: "The Chainsmokers & Coldplay", howl: null }
     ]);
     const step = ref(0);
     const nextButton = ref(true);
